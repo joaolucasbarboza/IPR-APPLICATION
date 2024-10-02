@@ -2,26 +2,16 @@ package br.com.ipr.domain.entities.church;
 
 public class Church {
 
-    private int id;
     private String name;
     private String description;
     private String image;
     private String idShepherd;
 
-    public Church(int id, String name, String description, String image, String idShepherd) {
-        this.id = id;
+    public Church(String name, String description, String image, String idShepherd) {
         this.name = name;
         this.description = description;
         this.image = image;
         this.idShepherd = idShepherd;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
