@@ -1,4 +1,4 @@
-package br.com.ipr.application.usecases;
+package br.com.ipr.application.usecases.member;
 
 import br.com.ipr.application.gateways.RepositoryMember;
 import br.com.ipr.domain.entities.member.Member;
