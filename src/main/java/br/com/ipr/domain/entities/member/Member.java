@@ -1,6 +1,8 @@
 package br.com.ipr.domain.entities.member;
 
-import java.util.Date;
+import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
+
+import java.time.LocalDate;
 
 public class Member {
     private String cpf;
@@ -9,13 +11,13 @@ public class Member {
     private String password;
     private String telephone;
     private String gender;
-    private Date birth;
-    private Date dateRegistered;
+    private LocalDate birth;
+    private LocalDate dateRegistered;
 
-    public Member(String cpf, String name, String email, String password, String telephone, String gender, Date birth, Date dateRegistered) {
+    public Member(String cpf, String name, String email, String password, String telephone, String gender, LocalDate birth) {
 
         if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
-            throw new IllegalArgumentException("CPF in incorrect pattern.");
+            throw new IncorretPatternCPF();
         }
 
         this.cpf = cpf;
@@ -25,7 +27,7 @@ public class Member {
         this.telephone = telephone;
         this.gender = gender;
         this.birth = birth;
-        this.dateRegistered = dateRegistered;
+        this.dateRegistered = LocalDate.now();
     }
 
     public String getCpf() {
@@ -76,19 +78,19 @@ public class Member {
         this.gender = gender;
     }
 
-    public Date getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 
-    public Date getDateRegistered() {
+    public LocalDate getDateRegistered() {
         return dateRegistered;
     }
 
-    public void setDateRegistered(Date dateRegistered) {
+    public void setDateRegistered(LocalDate dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
 }
