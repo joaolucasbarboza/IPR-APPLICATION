@@ -1,7 +1,7 @@
 package br.com.ipr.application.usecases.member;
 
 import br.com.ipr.application.gateways.RepositoryMember;
-import br.com.ipr.domain.entities.member.Member;
+import br.com.ipr.domain.member.Member;
 
 public class CreateMember {
 

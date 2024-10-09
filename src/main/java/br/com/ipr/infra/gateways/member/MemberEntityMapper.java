@@ -1,6 +1,6 @@
 package br.com.ipr.infra.gateways.member;
 
-import br.com.ipr.domain.entities.member.Member;
+import br.com.ipr.domain.member.Member;
 import br.com.ipr.infra.persistence.member.MemberEntity;
 
 public class MemberEntityMapper {

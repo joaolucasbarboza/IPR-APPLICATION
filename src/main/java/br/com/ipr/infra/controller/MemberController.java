@@ -1,7 +1,7 @@
 package br.com.ipr.infra.controller;
 
 import br.com.ipr.application.usecases.member.CreateMember;
-import br.com.ipr.domain.entities.member.Member;
+import br.com.ipr.domain.member.Member;
 import br.com.ipr.infra.request.MemberRequestDto;
 import br.com.ipr.infra.response.MemberResponseDto;
 import org.springframework.transaction.annotation.Transactional;

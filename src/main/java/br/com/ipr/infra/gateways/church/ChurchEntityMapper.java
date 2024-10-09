@@ -1,6 +1,6 @@
 package br.com.ipr.infra.gateways.church;
 
-import br.com.ipr.domain.entities.church.Church;
+import br.com.ipr.domain.church.Church;
 import br.com.ipr.infra.persistence.church.ChurchEntity;
 
 public class ChurchEntityMapper {

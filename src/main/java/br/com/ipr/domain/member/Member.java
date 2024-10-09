@@ -1,4 +1,4 @@
-package br.com.ipr.domain.entities.member;
+package br.com.ipr.domain.member;
 
 import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
 import lombok.Getter;

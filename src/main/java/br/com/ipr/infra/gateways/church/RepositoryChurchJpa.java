@@ -1,7 +1,7 @@
 package br.com.ipr.infra.gateways.church;
 
 import br.com.ipr.application.gateways.RepositoryChurch;
-import br.com.ipr.domain.entities.church.Church;
+import br.com.ipr.domain.church.Church;
 import br.com.ipr.infra.exceptions.member.MemberNotFound;
 import br.com.ipr.infra.persistence.church.ChurchEntity;
 import br.com.ipr.infra.persistence.church.ChurchRepository;

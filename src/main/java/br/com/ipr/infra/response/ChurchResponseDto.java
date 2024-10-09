@@ -1,6 +1,6 @@
 package br.com.ipr.infra.response;
 
-import br.com.ipr.domain.entities.church.Church;
+import br.com.ipr.domain.church.Church;
 
 import java.util.UUID;
 

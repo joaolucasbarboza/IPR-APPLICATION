@@ -1,7 +1,7 @@
 package br.com.ipr.infra.controller;
 
 import br.com.ipr.application.usecases.church.CreateChurch;
-import br.com.ipr.domain.entities.church.Church;
+import br.com.ipr.domain.church.Church;
 import br.com.ipr.infra.request.ChurchRequestDto;
 import br.com.ipr.infra.response.ChurchResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +21,6 @@ public class ChurchController {
 
     private final CreateChurch createChurch;
 
-
     public ChurchController(CreateChurch createChurch) {
         this.createChurch = createChurch;
     }
@@ -29,7 +28,8 @@ public class ChurchController {
     @Operation(description = "Criar uma nova igreja (Church).")
     @PostMapping
     @Transactional
-    public ResponseEntity<ChurchResponseDto> create(@RequestBody ChurchRequestDto requestDto, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<ChurchResponseDto> create(@RequestBody ChurchRequestDto requestDto,
+                                                    UriComponentsBuilder uriBuilder){
 
         Church salved = createChurch.registerChurch(new Church(
                 requestDto.name(),

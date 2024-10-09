@@ -1,4 +1,4 @@
-package br.com.ipr.domain.entities.cult;
+package br.com.ipr.domain.cult;
 
 import java.util.Date;
 
