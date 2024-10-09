@@ -5,12 +5,12 @@ import br.com.ipr.domain.member.Member;
 import br.com.ipr.infra.persistence.member.MemberEntity;
 import br.com.ipr.infra.persistence.member.MemberRepository;
 
-public class RepositoryMemberJpa implements RepositoryMember {
+public class RepositoryMemberImpl implements RepositoryMember {
 
     private final MemberRepository memberRepository;
     private final MemberEntityMapper memberEntityMapper;
 
-    public RepositoryMemberJpa(MemberRepository memberRepository, MemberEntityMapper memberEntityMapper) {
+    public RepositoryMemberImpl(MemberRepository memberRepository, MemberEntityMapper memberEntityMapper) {
         this.memberRepository = memberRepository;
         this.memberEntityMapper = memberEntityMapper;
     }

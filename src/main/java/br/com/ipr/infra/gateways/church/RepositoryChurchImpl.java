@@ -10,14 +10,14 @@ import br.com.ipr.infra.persistence.member.MemberRepository;
 
 import java.util.Optional;
 
-public class RepositoryChurchJpa implements RepositoryChurch {
+public class RepositoryChurchImpl implements RepositoryChurch {
 
     private final ChurchRepository repository;
     private final ChurchEntityMapper churchEntityMapper;
     private final MemberRepository memberRepository;
 
-    public RepositoryChurchJpa(ChurchRepository repository, ChurchEntityMapper churchEntityMapper,
-                               MemberRepository memberRepository) {
+    public RepositoryChurchImpl(ChurchRepository repository, ChurchEntityMapper churchEntityMapper,
+                                MemberRepository memberRepository) {
         this.repository = repository;
         this.churchEntityMapper = churchEntityMapper;
         this.memberRepository = memberRepository;

@@ -3,7 +3,7 @@ package br.com.ipr.config;
 import br.com.ipr.application.gateways.RepositoryMember;
 import br.com.ipr.application.usecases.member.CreateMember;
 import br.com.ipr.infra.gateways.member.MemberEntityMapper;
-import br.com.ipr.infra.gateways.member.RepositoryMemberJpa;
+import br.com.ipr.infra.gateways.member.RepositoryMemberImpl;
 import br.com.ipr.infra.persistence.member.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +17,8 @@ public class MemberConfig {
     }
 
     @Bean
-    RepositoryMemberJpa repositoryMemberJpa(MemberRepository memberRepository, MemberEntityMapper memberEntityMapper) {
-        return new RepositoryMemberJpa(memberRepository, memberEntityMapper);
+    RepositoryMemberImpl repositoryMemberJpa(MemberRepository memberRepository, MemberEntityMapper memberEntityMapper) {
+        return new RepositoryMemberImpl(memberRepository, memberEntityMapper);
     }
 
     @Bean
