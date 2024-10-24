@@ -1,10 +1,13 @@
 package br.com.ipr.domain.member;
 
 import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
+import br.com.ipr.infra.exceptions.member.InvalidEmailFormat;
+import br.com.ipr.infra.exceptions.member.PasswordTooShortException;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -20,9 +23,17 @@ public class Member {
 
     public Member(String cpf, String name, String email, String password, String telephone, String gender, LocalDate birth) {
 
-        if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
-            throw new IncorretPatternCPF();
-        }
+        Optional.ofNullable(cpf)
+                .filter(c -> c.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}"))
+                .orElseThrow(IncorretPatternCPF::new);
+
+        Optional.ofNullable(password)
+                .filter(p -> p.matches("\\d{8}"))
+                .orElseThrow(PasswordTooShortException::new);
+
+        Optional.ofNullable(email)
+                .filter(e -> e.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"))
+                .orElseThrow(InvalidEmailFormat::new);
 
         this.cpf = cpf;
         this.name = name;
