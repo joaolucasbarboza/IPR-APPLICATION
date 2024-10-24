@@ -1,7 +1,8 @@
 package br.com.ipr.infra.response;
 
+import br.com.ipr.domain.member.Member;
+
 import java.time.LocalDate;
-import java.util.Date;
 
 public record MemberResponseDto(
         String cpf,
@@ -12,4 +13,16 @@ public record MemberResponseDto(
         LocalDate birth,
         LocalDate dateRegistered
 ) {
+
+    public MemberResponseDto(Member member) {
+        this(
+                member.getCpf(),
+                member.getName(),
+                member.getEmail(),
+                member.getTelephone(),
+                member.getGender(),
+                member.getBirth(),
+                member.getDateRegistered()
+        );
+    }
 }

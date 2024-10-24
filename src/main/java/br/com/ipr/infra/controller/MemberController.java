@@ -4,11 +4,16 @@ import br.com.ipr.application.usecases.member.CreateMember;
 import br.com.ipr.domain.member.Member;
 import br.com.ipr.infra.request.MemberRequestDto;
 import br.com.ipr.infra.response.MemberResponseDto;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/members")
@@ -20,9 +25,12 @@ public class MemberController {
         this.createMember = createMember;
     }
 
+    @Operation(description = "Criar um novo membro.")
     @PostMapping
     @Transactional
-    public MemberResponseDto create(@RequestBody MemberRequestDto dto) {
+    public ResponseEntity<MemberResponseDto> create(@RequestBody MemberRequestDto dto,
+                                                    UriComponentsBuilder uriBuilder) {
+
         Member salved = createMember.registerMember(new Member(
                 dto.cpf(),
                 dto.name(),
@@ -33,14 +41,8 @@ public class MemberController {
                 dto.birth()
         ));
 
-        return new MemberResponseDto(
-                salved.getCpf(),
-                salved.getName(),
-                salved.getEmail(),
-                salved.getTelephone(),
-                salved.getGender(),
-                salved.getBirth(),
-                salved.getDateRegistered()
-        );
+        URI uri = uriBuilder.path("/members/{cpf}").buildAndExpand(salved.getCpf()).toUri();
+
+        return ResponseEntity.created(uri).body(new MemberResponseDto(salved));
     }
 }
