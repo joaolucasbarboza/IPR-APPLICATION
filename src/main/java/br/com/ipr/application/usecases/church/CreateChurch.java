@@ -5,14 +5,13 @@ import br.com.ipr.domain.church.Church;
 
 public class CreateChurch {
 
-    private final RepositoryChurch repositoryChurch;
+  private final RepositoryChurch repositoryChurch;
 
+  public CreateChurch(RepositoryChurch repositoryChurch) {
+    this.repositoryChurch = repositoryChurch;
+  }
 
-    public CreateChurch(RepositoryChurch repositoryChurch) {
-        this.repositoryChurch = repositoryChurch;
-    }
-
-    public Church registerChurch(Church church) {
-        return repositoryChurch.createChurch(church);
-    }
+  public Church registerChurch(Church church) {
+    return repositoryChurch.createChurch(church);
+  }
 }

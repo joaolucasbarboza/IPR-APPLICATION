@@ -4,5 +4,5 @@ import br.com.ipr.domain.member.Member;
 
 public interface RepositoryMember {
 
-    Member createMember(Member member);
+  Member createMember(Member member);
 }

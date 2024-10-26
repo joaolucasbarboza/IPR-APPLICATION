@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class MemberAlreadyExist extends RuntimeException {
 
-    public MemberAlreadyExist(String message) {
-        super(message);
-    }
+  public MemberAlreadyExist(String message) {
+    super(message);
+  }
 
-    public MemberAlreadyExist() {
-        super("Member already exists");
-    }
+  public MemberAlreadyExist() {
+    super("Member already exists");
+  }
 }

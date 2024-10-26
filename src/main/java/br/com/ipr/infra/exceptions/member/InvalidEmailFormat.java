@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class InvalidEmailFormat extends RuntimeException {
 
-    public InvalidEmailFormat(String message) {
-        super(message);
-    }
+  public InvalidEmailFormat(String message) {
+    super(message);
+  }
 
-    public InvalidEmailFormat() {
-        super("Invalid email format");
-    }
+  public InvalidEmailFormat() {
+    super("Invalid email format");
+  }
 }

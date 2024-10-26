@@ -14,34 +14,38 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(IncorretPatternCPF.class)
-    private ResponseEntity<RestErrorMessage> incorretPatternCPF(IncorretPatternCPF exception) {
-        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
-    }
+  @ExceptionHandler(IncorretPatternCPF.class)
+  private ResponseEntity<RestErrorMessage> incorretPatternCPF(IncorretPatternCPF exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+  }
 
-    @ExceptionHandler(MemberNotFound.class)
-    private ResponseEntity<RestErrorMessage> memberNotFound(MemberNotFound exception) {
-        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
-    }
+  @ExceptionHandler(MemberNotFound.class)
+  private ResponseEntity<RestErrorMessage> memberNotFound(MemberNotFound exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+  }
 
-    @ExceptionHandler(MemberAlreadyExist.class)
-    private ResponseEntity<RestErrorMessage> memberAlreadyExist(MemberAlreadyExist exception) {
-        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
-    }
+  @ExceptionHandler(MemberAlreadyExist.class)
+  private ResponseEntity<RestErrorMessage> memberAlreadyExist(MemberAlreadyExist exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+  }
 
-    @ExceptionHandler(PasswordTooShortException.class)
-    public ResponseEntity<RestErrorMessage> passwordTooShort(PasswordTooShortException exception) {
-        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
-    }
+  @ExceptionHandler(PasswordTooShortException.class)
+  public ResponseEntity<RestErrorMessage> passwordTooShort(PasswordTooShortException exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+  }
 
-    @ExceptionHandler(InvalidEmailFormat.class)
-    public ResponseEntity<RestErrorMessage> invalidEmail(InvalidEmailFormat exception) {
-        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
-    }
-
+  @ExceptionHandler(InvalidEmailFormat.class)
+  public ResponseEntity<RestErrorMessage> invalidEmail(InvalidEmailFormat exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+  }
 }

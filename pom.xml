@@ -110,6 +110,22 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>com.spotify.fmt</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<version>2.25</version>
+				<configuration>
+					<failOnError>false</failOnError>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 

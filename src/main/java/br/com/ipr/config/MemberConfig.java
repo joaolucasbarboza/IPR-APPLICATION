@@ -11,19 +11,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MemberConfig {
 
-    @Bean
-    CreateMember createMember(RepositoryMember repositoryMember) {
-        return new CreateMember(repositoryMember);
-    }
+  @Bean
+  CreateMember createMember(RepositoryMember repositoryMember) {
+    return new CreateMember(repositoryMember);
+  }
 
-    @Bean
-    RepositoryMemberImpl repositoryMemberJpa(MemberRepository memberRepository, MemberEntityMapper memberEntityMapper) {
-        return new RepositoryMemberImpl(memberRepository, memberEntityMapper);
-    }
+  @Bean
+  RepositoryMemberImpl repositoryMemberJpa(
+      MemberRepository memberRepository, MemberEntityMapper memberEntityMapper) {
+    return new RepositoryMemberImpl(memberRepository, memberEntityMapper);
+  }
 
-    @Bean
-    MemberEntityMapper memberEntityMapper() {
-        return new MemberEntityMapper();
-    }
-
+  @Bean
+  MemberEntityMapper memberEntityMapper() {
+    return new MemberEntityMapper();
+  }
 }

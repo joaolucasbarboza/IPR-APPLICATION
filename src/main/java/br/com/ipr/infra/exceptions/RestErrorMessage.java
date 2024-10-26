@@ -10,6 +10,6 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class RestErrorMessage {
 
-    private HttpStatus status;
-    private String message;
+  private HttpStatus status;
+  private String message;
 }

@@ -12,19 +12,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ChurchConfig {
 
-    @Bean
-    CreateChurch createChurch(RepositoryChurch repositoryChurch) {
-        return new CreateChurch(repositoryChurch);
-    }
+  @Bean
+  CreateChurch createChurch(RepositoryChurch repositoryChurch) {
+    return new CreateChurch(repositoryChurch);
+  }
 
-    @Bean
-    RepositoryChurchImpl repositoryChurchJpa(ChurchRepository churchRepository,
-                                             ChurchEntityMapper churchEntityMapper, MemberRepository memberRepository) {
-        return new RepositoryChurchImpl(churchRepository, churchEntityMapper, memberRepository);
-    }
+  @Bean
+  RepositoryChurchImpl repositoryChurchJpa(
+      ChurchRepository churchRepository,
+      ChurchEntityMapper churchEntityMapper,
+      MemberRepository memberRepository) {
+    return new RepositoryChurchImpl(churchRepository, churchEntityMapper, memberRepository);
+  }
 
-    @Bean
-    ChurchEntityMapper churchEntityMapper() {
-        return new ChurchEntityMapper();
-    }
+  @Bean
+  ChurchEntityMapper churchEntityMapper() {
+    return new ChurchEntityMapper();
+  }
 }

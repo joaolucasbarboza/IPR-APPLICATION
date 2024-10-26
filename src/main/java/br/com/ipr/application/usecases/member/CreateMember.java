@@ -5,13 +5,13 @@ import br.com.ipr.domain.member.Member;
 
 public class CreateMember {
 
-    private final RepositoryMember repositoryMember;
+  private final RepositoryMember repositoryMember;
 
-    public CreateMember(RepositoryMember repositoryMember) {
-        this.repositoryMember = repositoryMember;
-    }
+  public CreateMember(RepositoryMember repositoryMember) {
+    this.repositoryMember = repositoryMember;
+  }
 
-    public Member registerMember(Member member) {
-        return repositoryMember.createMember(member);
-    }
+  public Member registerMember(Member member) {
+    return repositoryMember.createMember(member);
+  }
 }

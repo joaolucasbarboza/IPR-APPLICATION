@@ -4,12 +4,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class MemberNotFound extends RuntimeException {
-    public MemberNotFound(final String message) {
-        super(message);
-    }
+  public MemberNotFound(final String message) {
+    super(message);
+  }
 
-    public MemberNotFound() {
-        super("Member not found.");
-    }
-
+  public MemberNotFound() {
+    super("Member not found.");
+  }
 }
