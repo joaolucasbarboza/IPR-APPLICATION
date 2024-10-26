@@ -7,11 +7,13 @@ import br.com.ipr.infra.persistence.church.ChurchEntity;
 import br.com.ipr.infra.persistence.church.ChurchRepository;
 import br.com.ipr.infra.persistence.member.MemberEntity;
 import br.com.ipr.infra.persistence.member.MemberRepository;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class RepositoryChurchImpl implements RepositoryChurch {
 
-  private final ChurchRepository repository;
+  private final ChurchRepository churchRepository;
   private final ChurchEntityMapper churchEntityMapper;
   private final MemberRepository memberRepository;
 
@@ -19,21 +21,34 @@ public class RepositoryChurchImpl implements RepositoryChurch {
       ChurchRepository repository,
       ChurchEntityMapper churchEntityMapper,
       MemberRepository memberRepository) {
-    this.repository = repository;
+    this.churchRepository = repository;
     this.churchEntityMapper = churchEntityMapper;
     this.memberRepository = memberRepository;
   }
 
   @Override
   public Church createChurch(Church church) {
-    ChurchEntity entity = churchEntityMapper.toEntity(church);
+    ChurchEntity entity = churchEntityMapper.toChurchEntity(church);
 
     Optional<MemberEntity> shepherdId = memberRepository.findById(entity.getIdShepherd());
 
     if (shepherdId.isEmpty()) throw new MemberNotFound();
 
-    repository.save(entity);
+    churchRepository.save(entity);
 
-    return churchEntityMapper.toDomain(entity);
+    return churchEntityMapper.toChurchDomain(entity);
+  }
+
+  @Override
+  public List<Church> getAllChurches() {
+
+    List<ChurchEntity> entity = churchRepository.findAll();
+
+    return churchEntityMapper.toChurchDomain(entity);
+  }
+
+  @Override
+  public boolean existsByShepherd(UUID shepherdId) {
+    return churchRepository.existsByIdShepherd(shepherdId);
   }
 }

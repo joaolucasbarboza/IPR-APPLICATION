@@ -1,5 +1,6 @@
 package br.com.ipr.infra.exceptions;
 
+import br.com.ipr.infra.exceptions.church.ShepherdAlreadyRegistered;
 import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
 import br.com.ipr.infra.exceptions.member.InvalidEmailFormat;
 import br.com.ipr.infra.exceptions.member.MemberAlreadyExist;
@@ -47,5 +48,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     RestErrorMessage errorMessage =
         new RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+  }
+
+  @ExceptionHandler(ShepherdAlreadyRegistered.class)
+  public ResponseEntity<RestErrorMessage> shepherdAlreadyRegistered(
+      ShepherdAlreadyRegistered exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
   }
 }
