@@ -1,7 +1,7 @@
 package br.com.ipr.infra.controller;
 
 import br.com.ipr.application.gateways.RepositoryMember;
-import br.com.ipr.application.usecases.MemberUseCases;
+import br.com.ipr.application.usecases.MemberUseCase;
 import br.com.ipr.domain.member.Member;
 import br.com.ipr.infra.request.MemberRequestDto;
 import br.com.ipr.infra.response.MemberResponseDto;
@@ -22,9 +22,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class MemberController {
 
   private final RepositoryMember repositoryMember;
-  private final MemberUseCases createMember;
+  private final MemberUseCase createMember;
 
-  public MemberController(MemberUseCases createMember, RepositoryMember repositoryMember) {
+  public MemberController(MemberUseCase createMember, RepositoryMember repositoryMember) {
     this.createMember = createMember;
     this.repositoryMember = repositoryMember;
   }

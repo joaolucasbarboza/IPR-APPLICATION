@@ -2,11 +2,7 @@ package br.com.ipr.infra.exceptions;
 
 import br.com.ipr.infra.exceptions.church.NotFoundChurch;
 import br.com.ipr.infra.exceptions.church.ShepherdAlreadyRegistered;
-import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
-import br.com.ipr.infra.exceptions.member.InvalidEmailFormat;
-import br.com.ipr.infra.exceptions.member.MemberAlreadyExist;
-import br.com.ipr.infra.exceptions.member.MemberNotFound;
-import br.com.ipr.infra.exceptions.member.PasswordTooShortException;
+import br.com.ipr.infra.exceptions.member.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -64,5 +60,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     RestErrorMessage errorMessage =
         new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+  }
+
+  @ExceptionHandler(EmailAlreadyRegistered.class)
+  public ResponseEntity<RestErrorMessage> emailAlreadyRegistered(EmailAlreadyRegistered exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
   }
 }

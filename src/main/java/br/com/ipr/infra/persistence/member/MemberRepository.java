@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<MemberEntity, UUID> {
   Optional<MemberEntity> findByCpf(String cpf);
+
+  Optional<MemberEntity> findByEmail(String email);
 }
