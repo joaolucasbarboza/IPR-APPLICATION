@@ -11,4 +11,6 @@ public interface RepositoryChurch {
   List<Church> getAllChurches();
 
   boolean existsByShepherd(UUID shepherdId);
+
+  Church findById(UUID id);
 }

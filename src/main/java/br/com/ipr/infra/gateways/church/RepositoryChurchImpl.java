@@ -2,6 +2,7 @@ package br.com.ipr.infra.gateways.church;
 
 import br.com.ipr.application.gateways.RepositoryChurch;
 import br.com.ipr.domain.church.Church;
+import br.com.ipr.infra.exceptions.church.NotFoundChurch;
 import br.com.ipr.infra.exceptions.member.MemberNotFound;
 import br.com.ipr.infra.persistence.church.ChurchEntity;
 import br.com.ipr.infra.persistence.church.ChurchRepository;
@@ -50,5 +51,13 @@ public class RepositoryChurchImpl implements RepositoryChurch {
   @Override
   public boolean existsByShepherd(UUID shepherdId) {
     return churchRepository.existsByIdShepherd(shepherdId);
+  }
+
+  @Override
+  public Church findById(UUID id) {
+    ChurchEntity entity =
+        churchRepository.findById(id).orElseThrow(() -> new NotFoundChurch("Not found church"));
+
+    return churchEntityMapper.toChurchDomain(entity);
   }
 }

@@ -1,5 +1,6 @@
 package br.com.ipr.infra.exceptions;
 
+import br.com.ipr.infra.exceptions.church.NotFoundChurch;
 import br.com.ipr.infra.exceptions.church.ShepherdAlreadyRegistered;
 import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
 import br.com.ipr.infra.exceptions.member.InvalidEmailFormat;
@@ -56,5 +57,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     RestErrorMessage errorMessage =
         new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
     return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+  }
+
+  @ExceptionHandler(NotFoundChurch.class)
+  public ResponseEntity<RestErrorMessage> notFoundChurch(NotFoundChurch exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
   }
 }
