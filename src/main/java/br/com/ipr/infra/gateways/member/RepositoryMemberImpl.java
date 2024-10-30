@@ -5,6 +5,7 @@ import br.com.ipr.domain.member.Member;
 import br.com.ipr.infra.exceptions.member.MemberAlreadyExist;
 import br.com.ipr.infra.persistence.member.MemberEntity;
 import br.com.ipr.infra.persistence.member.MemberRepository;
+import java.util.List;
 import java.util.Optional;
 
 public class RepositoryMemberImpl implements RepositoryMember {
@@ -20,7 +21,7 @@ public class RepositoryMemberImpl implements RepositoryMember {
 
   @Override
   public Member createMember(Member member) {
-    MemberEntity entity = memberEntityMapper.toEntity(member);
+    MemberEntity entity = memberEntityMapper.toMemberEntity(member);
 
     Optional<MemberEntity> existsMember = memberRepository.findByCpf(member.getCpf());
 
@@ -29,6 +30,13 @@ public class RepositoryMemberImpl implements RepositoryMember {
     }
 
     memberRepository.save(entity);
-    return memberEntityMapper.toDomain(entity);
+    return memberEntityMapper.toMemberDomain(entity);
+  }
+
+  @Override
+  public List<Member> getAllMembers() {
+    List<MemberEntity> entity = memberRepository.findAll();
+
+    return memberEntityMapper.toMemberDomain(entity);
   }
 }
