@@ -1,4 +1,4 @@
-package br.com.ipr.domain.event;
+package br.com.ipr.domain;
 
 public class Event {
 

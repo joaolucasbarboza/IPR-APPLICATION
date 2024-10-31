@@ -1,7 +1,7 @@
 package br.com.ipr.application.usecases;
 
 import br.com.ipr.application.gateways.RepositoryMember;
-import br.com.ipr.domain.member.Member;
+import br.com.ipr.domain.Member;
 import br.com.ipr.infra.exceptions.member.*;
 import java.util.Optional;
 

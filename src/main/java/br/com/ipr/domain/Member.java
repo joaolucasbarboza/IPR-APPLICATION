@@ -1,4 +1,4 @@
-package br.com.ipr.domain.member;
+package br.com.ipr.domain;
 
 import java.time.LocalDate;
 import lombok.Getter;

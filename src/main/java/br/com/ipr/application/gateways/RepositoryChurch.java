@@ -1,6 +1,6 @@
 package br.com.ipr.application.gateways;
 
-import br.com.ipr.domain.church.Church;
+import br.com.ipr.domain.Church;
 import java.util.List;
 import java.util.UUID;
 

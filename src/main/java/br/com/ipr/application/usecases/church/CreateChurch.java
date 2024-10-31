@@ -1,7 +1,7 @@
 package br.com.ipr.application.usecases.church;
 
 import br.com.ipr.application.gateways.RepositoryChurch;
-import br.com.ipr.domain.church.Church;
+import br.com.ipr.domain.Church;
 import br.com.ipr.infra.exceptions.church.ShepherdAlreadyRegistered;
 
 public class CreateChurch {

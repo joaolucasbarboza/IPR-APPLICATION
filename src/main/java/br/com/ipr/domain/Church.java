@@ -1,4 +1,4 @@
-package br.com.ipr.domain.church;
+package br.com.ipr.domain;
 
 import java.util.UUID;
 import lombok.Getter;

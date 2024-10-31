@@ -2,7 +2,7 @@ package br.com.ipr.infra.controller;
 
 import br.com.ipr.application.gateways.RepositoryMember;
 import br.com.ipr.application.usecases.MemberUseCase;
-import br.com.ipr.domain.member.Member;
+import br.com.ipr.domain.Member;
 import br.com.ipr.infra.request.MemberRequestDto;
 import br.com.ipr.infra.response.MemberResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,10 +22,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class MemberController {
 
   private final RepositoryMember repositoryMember;
-  private final MemberUseCase createMember;
+  private final MemberUseCase memberUseCase;
 
   public MemberController(MemberUseCase createMember, RepositoryMember repositoryMember) {
-    this.createMember = createMember;
+    this.memberUseCase = createMember;
     this.repositoryMember = repositoryMember;
   }
 
@@ -36,7 +36,7 @@ public class MemberController {
       @RequestBody MemberRequestDto dto, UriComponentsBuilder uriBuilder) {
 
     Member salved =
-        createMember.registerMember(
+        memberUseCase.registerMember(
             new Member(
                 dto.cpf(),
                 dto.name(),

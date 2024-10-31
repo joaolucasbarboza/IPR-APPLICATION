@@ -3,7 +3,7 @@ package br.com.ipr.infra.controller;
 import br.com.ipr.application.gateways.RepositoryChurch;
 import br.com.ipr.application.usecases.church.CreateChurch;
 import br.com.ipr.application.usecases.church.GetAllChurches;
-import br.com.ipr.domain.church.Church;
+import br.com.ipr.domain.Church;
 import br.com.ipr.infra.request.ChurchRequestDto;
 import br.com.ipr.infra.response.ChurchResponseDto;
 import io.swagger.v3.oas.annotations.Operation;

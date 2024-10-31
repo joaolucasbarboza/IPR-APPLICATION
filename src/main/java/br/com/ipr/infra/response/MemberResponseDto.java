@@ -1,6 +1,6 @@
 package br.com.ipr.infra.response;
 
-import br.com.ipr.domain.member.Member;
+import br.com.ipr.domain.Member;
 import java.time.LocalDate;
 
 public record MemberResponseDto(

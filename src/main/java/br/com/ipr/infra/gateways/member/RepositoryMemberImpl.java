@@ -1,7 +1,7 @@
 package br.com.ipr.infra.gateways.member;
 
 import br.com.ipr.application.gateways.RepositoryMember;
-import br.com.ipr.domain.member.Member;
+import br.com.ipr.domain.Member;
 import br.com.ipr.infra.persistence.member.MemberEntity;
 import br.com.ipr.infra.persistence.member.MemberRepository;
 import java.util.List;
