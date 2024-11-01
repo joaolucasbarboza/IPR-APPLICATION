@@ -23,10 +23,10 @@ public class Department {
     this.image = image;
   }
 
-    public Department(String name, String description, String image, Integer quantMembers) {
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.quantMembers = quantMembers;
-    }
+  public Department(String name, String description, String image, Integer quantMembers) {
+    this.name = name;
+    this.description = description;
+    this.image = image;
+    this.quantMembers = quantMembers;
+  }
 }

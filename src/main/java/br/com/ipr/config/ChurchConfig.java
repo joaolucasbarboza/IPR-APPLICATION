@@ -13,13 +13,9 @@ import org.springframework.context.annotation.Configuration;
 public class ChurchConfig {
 
   @Bean
-  ChurchUseCase createChurch(RepositoryChurch repositoryChurch) {
-    return new ChurchUseCase(repositoryChurch);
-  }
-
-  @Bean
-  ChurchUseCase churchUseCase(RepositoryChurch repositoryChurch) {
-    return new ChurchUseCase(repositoryChurch);
+  ChurchUseCase churchUseCase(
+      RepositoryChurch repositoryChurch, ChurchEntityMapper churchEntityMapper) {
+    return new ChurchUseCase(repositoryChurch, churchEntityMapper);
   }
 
   @Bean

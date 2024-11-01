@@ -11,18 +11,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Department {
 
-    @Bean
-    DepartmentUseCase departmentUseCase(RepositoryDepartment repositoryDepartment) {
-        return new DepartmentUseCase(repositoryDepartment);
-    }
+  @Bean
+  DepartmentUseCase departmentUseCase(RepositoryDepartment repositoryDepartment) {
+    return new DepartmentUseCase(repositoryDepartment);
+  }
 
-    @Bean
-    RepositoryDepartmentImpl repositoryDepartmentJpa(DepartmentRepository departmentRepository, DepartmentEntityMapper departmentEntityMapper) {
-        return new RepositoryDepartmentImpl(departmentRepository, departmentEntityMapper);
-    }
+  @Bean
+  RepositoryDepartmentImpl repositoryDepartmentJpa(
+      DepartmentRepository departmentRepository, DepartmentEntityMapper departmentEntityMapper) {
+    return new RepositoryDepartmentImpl(departmentRepository, departmentEntityMapper);
+  }
 
-    @Bean
-    DepartmentEntityMapper departmentEntityMapper() {
-        return new DepartmentEntityMapper();
-    }
+  @Bean
+  DepartmentEntityMapper departmentEntityMapper() {
+    return new DepartmentEntityMapper();
+  }
 }

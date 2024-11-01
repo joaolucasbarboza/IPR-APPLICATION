@@ -19,12 +19,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class ChurchController {
 
   private final RepositoryChurch repositoryChurch;
-  private final ChurchUseCase createChurch;
   private final ChurchUseCase churchUseCase;
 
-  public ChurchController(
-      ChurchUseCase createChurch, ChurchUseCase churchUseCase, RepositoryChurch repositoryChurch) {
-    this.createChurch = createChurch;
+  public ChurchController(ChurchUseCase churchUseCase, RepositoryChurch repositoryChurch) {
     this.churchUseCase = churchUseCase;
     this.repositoryChurch = repositoryChurch;
   }
@@ -33,19 +30,12 @@ public class ChurchController {
   @PostMapping
   @Transactional
   public ResponseEntity<ChurchResponseDto> create(
-      @RequestBody ChurchRequestDto requestDto, UriComponentsBuilder uriBuilder) {
+      @RequestBody ChurchRequestDto churchRequestDto, UriComponentsBuilder uriBuilder) {
 
-    Church salved =
-        createChurch.create(
-            new Church(
-                requestDto.name(),
-                requestDto.description(),
-                requestDto.image(),
-                requestDto.idShepherd()));
+    Church churchSalved = churchUseCase.create(churchRequestDto);
+    URI uri = uriBuilder.path("/churchs/{id}").buildAndExpand(churchSalved.getId()).toUri();
 
-    URI uri = uriBuilder.path("/churchs/{id}").buildAndExpand(salved.getId()).toUri();
-
-    return ResponseEntity.created(uri).body(new ChurchResponseDto(salved));
+    return ResponseEntity.created(uri).body(new ChurchResponseDto(churchSalved));
   }
 
   @Operation(description = "Exibir todas as igrejas")
@@ -62,7 +52,6 @@ public class ChurchController {
   @Operation(description = "Exibir uma igreja")
   @GetMapping("/{id}")
   public ResponseEntity<ChurchResponseDto> getById(@PathVariable UUID id) {
-
     Church church = repositoryChurch.findById(id);
 
     return ResponseEntity.ok().body(new ChurchResponseDto(church));

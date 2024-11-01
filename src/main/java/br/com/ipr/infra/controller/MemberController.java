@@ -30,7 +30,7 @@ public class MemberController {
   @PostMapping
   @Transactional
   public ResponseEntity<MemberResponseDto> create(
-          @RequestBody MemberRequestDto memberRequestDto, UriComponentsBuilder uriBuilder) {
+      @RequestBody MemberRequestDto memberRequestDto, UriComponentsBuilder uriBuilder) {
 
     Member memberSalved = memberUseCase.create(memberRequestDto);
     URI uri = uriBuilder.path("/members/{cpf}").buildAndExpand(memberSalved.getCpf()).toUri();

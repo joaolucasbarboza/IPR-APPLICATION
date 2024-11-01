@@ -2,6 +2,7 @@ package br.com.ipr.infra.gateways.church;
 
 import br.com.ipr.domain.Church;
 import br.com.ipr.infra.persistence.church.ChurchEntity;
+import br.com.ipr.infra.request.ChurchRequestDto;
 import java.util.List;
 
 public class ChurchEntityMapper {
@@ -22,6 +23,14 @@ public class ChurchEntityMapper {
         churchEntity.getDescription(),
         churchEntity.getImage(),
         churchEntity.getIdShepherd());
+  }
+
+  public Church toChurchDomain(ChurchRequestDto churchRequestDto) {
+    return new Church(
+        churchRequestDto.name(),
+        churchRequestDto.description(),
+        churchRequestDto.image(),
+        churchRequestDto.idShepherd());
   }
 
   public List<Church> toChurchDomain(List<ChurchEntity> churches) {
