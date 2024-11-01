@@ -1,6 +1,7 @@
 package br.com.ipr.infra.request;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public record MemberRequestDto(
     String cpf,
@@ -9,4 +10,5 @@ public record MemberRequestDto(
     String password,
     String telephone,
     String gender,
-    LocalDate birth) {}
+    LocalDate birth,
+    UUID churchId) {}

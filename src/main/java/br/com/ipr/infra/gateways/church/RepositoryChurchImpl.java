@@ -32,7 +32,6 @@ public class RepositoryChurchImpl implements RepositoryChurch {
     ChurchEntity entity = churchEntityMapper.toChurchEntity(church);
 
     Optional<MemberEntity> shepherdId = memberRepository.findById(entity.getIdShepherd());
-
     if (shepherdId.isEmpty()) throw new MemberNotFound();
 
     churchRepository.save(entity);
@@ -41,10 +40,9 @@ public class RepositoryChurchImpl implements RepositoryChurch {
   }
 
   @Override
-  public List<Church> getAllChurches() {
+  public List<Church> findAll() {
 
     List<ChurchEntity> entity = churchRepository.findAll();
-
     return churchEntityMapper.toChurchDomain(entity);
   }
 
@@ -55,9 +53,9 @@ public class RepositoryChurchImpl implements RepositoryChurch {
 
   @Override
   public Church findById(UUID id) {
-    ChurchEntity entity =
-        churchRepository.findById(id).orElseThrow(() -> new NotFoundChurch("Not found church"));
+    ChurchEntity church =
+        churchRepository.findById(id).orElseThrow(() -> new NotFoundChurch("Church not found"));
 
-    return churchEntityMapper.toChurchDomain(entity);
+    return churchEntityMapper.toChurchDomain(church);
   }
 }

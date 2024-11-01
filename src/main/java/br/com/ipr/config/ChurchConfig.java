@@ -1,8 +1,7 @@
 package br.com.ipr.config;
 
 import br.com.ipr.application.gateways.RepositoryChurch;
-import br.com.ipr.application.usecases.church.CreateChurch;
-import br.com.ipr.application.usecases.church.GetAllChurches;
+import br.com.ipr.application.usecases.ChurchUseCase;
 import br.com.ipr.infra.gateways.church.ChurchEntityMapper;
 import br.com.ipr.infra.gateways.church.RepositoryChurchImpl;
 import br.com.ipr.infra.persistence.church.ChurchRepository;
@@ -14,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
 public class ChurchConfig {
 
   @Bean
-  CreateChurch createChurch(RepositoryChurch repositoryChurch) {
-    return new CreateChurch(repositoryChurch);
+  ChurchUseCase createChurch(RepositoryChurch repositoryChurch) {
+    return new ChurchUseCase(repositoryChurch);
   }
 
   @Bean
-  GetAllChurches getAllChurches(RepositoryChurch repositoryChurch) {
-    return new GetAllChurches(repositoryChurch);
+  ChurchUseCase churchUseCase(RepositoryChurch repositoryChurch) {
+    return new ChurchUseCase(repositoryChurch);
   }
 
   @Bean

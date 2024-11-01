@@ -27,8 +27,8 @@ public class RepositoryMemberImpl implements RepositoryMember {
   }
 
   @Override
-  public Optional<MemberEntity> findByCpf(String cpf) {
-    return memberRepository.findByCpf(cpf);
+  public boolean findByCpf(String cpf) {
+    return memberRepository.findByCpf(cpf).isPresent();
   }
 
   @Override
@@ -37,7 +37,7 @@ public class RepositoryMemberImpl implements RepositoryMember {
   }
 
   @Override
-  public List<Member> getAllMembers() {
+  public List<Member> findAll() {
     List<MemberEntity> entity = memberRepository.findAll();
 
     return memberEntityMapper.toMemberDomain(entity);

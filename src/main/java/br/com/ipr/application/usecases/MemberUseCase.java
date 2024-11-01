@@ -1,22 +1,29 @@
 package br.com.ipr.application.usecases;
 
+import br.com.ipr.application.gateways.RepositoryChurch;
 import br.com.ipr.application.gateways.RepositoryMember;
+import br.com.ipr.domain.Church;
 import br.com.ipr.domain.Member;
 import br.com.ipr.infra.exceptions.member.*;
+import br.com.ipr.infra.gateways.member.MemberEntityMapper;
+import br.com.ipr.infra.request.MemberRequestDto;
 import java.util.Optional;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class MemberUseCase {
 
   private final RepositoryMember repositoryMember;
+  private final RepositoryChurch repositoryChurch;
+  private final MemberEntityMapper memberEntityMapper;
 
-  public MemberUseCase(RepositoryMember repositoryMember) {
-    this.repositoryMember = repositoryMember;
-  }
+  public Member create(MemberRequestDto memberRequestDto) {
+    validateCpf(memberRequestDto.cpf());
+    validateEmail(memberRequestDto.email());
+    validatePassword(memberRequestDto.password());
 
-  public Member registerMember(Member member) {
-    validateCpf(member.getCpf());
-    validateEmail(member.getEmail());
-    validatePassword(member.getPassword());
+    Church church = repositoryChurch.findById(memberRequestDto.churchId());
+    Member member = memberEntityMapper.toMemberDomain(memberRequestDto, church);
 
     return repositoryMember.createMember(member);
   }
@@ -42,7 +49,7 @@ public class MemberUseCase {
         .filter(c -> c.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}"))
         .orElseThrow(IncorretPatternCPF::new);
 
-    if (repositoryMember.findByCpf(cpf).isPresent()) {
+    if (repositoryMember.findByCpf(cpf)) {
       throw new MemberAlreadyExist(String.format("CPF %s already registered", cpf));
     }
   }

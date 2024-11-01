@@ -8,7 +8,7 @@ public interface RepositoryChurch {
 
   Church createChurch(Church church);
 
-  List<Church> getAllChurches();
+  List<Church> findAll();
 
   boolean existsByShepherd(UUID shepherdId);
 

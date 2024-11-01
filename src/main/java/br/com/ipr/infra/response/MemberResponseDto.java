@@ -1,5 +1,6 @@
 package br.com.ipr.infra.response;
 
+import br.com.ipr.domain.Church;
 import br.com.ipr.domain.Member;
 import java.time.LocalDate;
 
@@ -10,7 +11,8 @@ public record MemberResponseDto(
     String telephone,
     String gender,
     LocalDate birth,
-    LocalDate dateRegistered) {
+    LocalDate dateRegistered,
+    Church church) {
 
   public MemberResponseDto(Member member) {
     this(
@@ -20,6 +22,7 @@ public record MemberResponseDto(
         member.getTelephone(),
         member.getGender(),
         member.getBirth(),
-        member.getDateRegistered());
+        member.getDateRegistered(),
+        member.getChurch());
   }
 }

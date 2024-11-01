@@ -9,9 +9,9 @@ public interface RepositoryMember {
 
   Member createMember(Member member);
 
-  Optional<MemberEntity> findByCpf(String cpf);
+  boolean findByCpf(String cpf);
 
   Optional<MemberEntity> findByEmail(String email);
 
-  List<Member> getAllMembers();
+  List<Member> findAll();
 }

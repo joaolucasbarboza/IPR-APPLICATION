@@ -15,6 +15,7 @@ public class Member {
   private String gender;
   private LocalDate birth;
   private LocalDate dateRegistered;
+  private Church church;
 
   public Member(
       String cpf,
@@ -23,7 +24,8 @@ public class Member {
       String password,
       String telephone,
       String gender,
-      LocalDate birth) {
+      LocalDate birth,
+      Church church) {
 
     this.cpf = cpf;
     this.name = name;
@@ -33,5 +35,6 @@ public class Member {
     this.gender = gender;
     this.birth = birth;
     this.dateRegistered = LocalDate.now();
+    this.church = church;
   }
 }

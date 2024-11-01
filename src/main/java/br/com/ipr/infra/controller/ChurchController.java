@@ -1,8 +1,7 @@
 package br.com.ipr.infra.controller;
 
 import br.com.ipr.application.gateways.RepositoryChurch;
-import br.com.ipr.application.usecases.church.CreateChurch;
-import br.com.ipr.application.usecases.church.GetAllChurches;
+import br.com.ipr.application.usecases.ChurchUseCase;
 import br.com.ipr.domain.Church;
 import br.com.ipr.infra.request.ChurchRequestDto;
 import br.com.ipr.infra.response.ChurchResponseDto;
@@ -20,13 +19,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class ChurchController {
 
   private final RepositoryChurch repositoryChurch;
-  private final CreateChurch createChurch;
-  private final GetAllChurches getAllChurches;
+  private final ChurchUseCase createChurch;
+  private final ChurchUseCase churchUseCase;
 
   public ChurchController(
-      CreateChurch createChurch, GetAllChurches getAllChurches, RepositoryChurch repositoryChurch) {
+      ChurchUseCase createChurch, ChurchUseCase churchUseCase, RepositoryChurch repositoryChurch) {
     this.createChurch = createChurch;
-    this.getAllChurches = getAllChurches;
+    this.churchUseCase = churchUseCase;
     this.repositoryChurch = repositoryChurch;
   }
 
@@ -37,7 +36,7 @@ public class ChurchController {
       @RequestBody ChurchRequestDto requestDto, UriComponentsBuilder uriBuilder) {
 
     Church salved =
-        createChurch.registerChurch(
+        createChurch.create(
             new Church(
                 requestDto.name(),
                 requestDto.description(),
@@ -52,7 +51,7 @@ public class ChurchController {
   @Operation(description = "Exibir todas as igrejas")
   @GetMapping
   public ResponseEntity<List<ChurchResponseDto>> getAll() {
-    List<Church> churches = getAllChurches.getAll();
+    List<Church> churches = churchUseCase.findAll();
 
     List<ChurchResponseDto> churchResponseDtos =
         churches.stream().map(ChurchResponseDto::new).toList();

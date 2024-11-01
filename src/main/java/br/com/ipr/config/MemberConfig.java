@@ -1,7 +1,9 @@
 package br.com.ipr.config;
 
+import br.com.ipr.application.gateways.RepositoryChurch;
 import br.com.ipr.application.gateways.RepositoryMember;
 import br.com.ipr.application.usecases.MemberUseCase;
+import br.com.ipr.infra.gateways.church.ChurchEntityMapper;
 import br.com.ipr.infra.gateways.member.MemberEntityMapper;
 import br.com.ipr.infra.gateways.member.RepositoryMemberImpl;
 import br.com.ipr.infra.persistence.member.MemberRepository;
@@ -12,8 +14,11 @@ import org.springframework.context.annotation.Configuration;
 public class MemberConfig {
 
   @Bean
-  MemberUseCase createMember(RepositoryMember repositoryMember) {
-    return new MemberUseCase(repositoryMember);
+  MemberUseCase memberUseCase(
+      RepositoryMember repositoryMember,
+      RepositoryChurch repositoryChurch,
+      MemberEntityMapper memberEntityMapper) {
+    return new MemberUseCase(repositoryMember, repositoryChurch, memberEntityMapper);
   }
 
   @Bean
@@ -23,7 +28,7 @@ public class MemberConfig {
   }
 
   @Bean
-  MemberEntityMapper memberEntityMapper() {
-    return new MemberEntityMapper();
+  MemberEntityMapper memberEntityMapper(ChurchEntityMapper churchEntityMapper) {
+    return new MemberEntityMapper(churchEntityMapper);
   }
 }
