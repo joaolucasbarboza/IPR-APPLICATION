@@ -11,6 +11,7 @@ public class ChurchEntityMapper {
     return new ChurchEntity(
         church.getId(),
         church.getName(),
+        church.getSurname(),
         church.getDescription(),
         church.getImage(),
         church.getIdShepherd());
@@ -20,6 +21,7 @@ public class ChurchEntityMapper {
     return new Church(
         churchEntity.getId(),
         churchEntity.getName(),
+        churchEntity.getSurname(),
         churchEntity.getDescription(),
         churchEntity.getImage(),
         churchEntity.getIdShepherd());
@@ -28,6 +30,7 @@ public class ChurchEntityMapper {
   public Church toChurchDomain(ChurchRequestDto churchRequestDto) {
     return new Church(
         churchRequestDto.name(),
+        churchRequestDto.surname(),
         churchRequestDto.description(),
         churchRequestDto.image(),
         churchRequestDto.idShepherd());
