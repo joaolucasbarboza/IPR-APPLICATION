@@ -36,7 +36,7 @@ public class MemberEntityMapper {
         member.getTelephone(),
         member.getGender(),
         member.getBirth(),
-        churchEntityMapper.toChurchEntity(member.getChurch()));
+        member.getChurch() != null ? churchEntityMapper.toChurchEntity(member.getChurch()) : null);
   }
 
   public Member toMemberDomain(MemberEntity memberEntity) {
@@ -48,7 +48,9 @@ public class MemberEntityMapper {
         memberEntity.getTelephone(),
         memberEntity.getGender(),
         memberEntity.getBirth(),
-        churchEntityMapper.toChurchDomain(memberEntity.getChurch()));
+        memberEntity.getChurch() != null
+            ? churchEntityMapper.toChurchDomain(memberEntity.getChurch())
+            : null);
   }
 
   public List<Member> toMemberDomain(List<MemberEntity> memberEntityList) {

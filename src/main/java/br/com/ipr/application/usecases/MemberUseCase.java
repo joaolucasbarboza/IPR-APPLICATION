@@ -22,7 +22,11 @@ public class MemberUseCase {
     validateEmail(memberRequestDto.email());
     validatePassword(memberRequestDto.password());
 
-    Church church = repositoryChurch.findById(memberRequestDto.churchId());
+    Church church = null;
+    if (memberRequestDto.churchId() != null) {
+      church = repositoryChurch.findById(memberRequestDto.churchId());
+    }
+
     Member member = memberEntityMapper.toMemberDomain(memberRequestDto, church);
 
     return repositoryMember.createMember(member);
