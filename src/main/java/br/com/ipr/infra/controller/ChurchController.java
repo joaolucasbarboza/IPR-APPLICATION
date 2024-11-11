@@ -40,6 +40,7 @@ public class ChurchController {
 
   @Operation(description = "Exibir todas as igrejas")
   @GetMapping
+  // TODO: Refatorar
   public ResponseEntity<List<ChurchResponseDto>> getAll() {
     List<Church> churches = churchUseCase.findAll();
 
@@ -51,6 +52,7 @@ public class ChurchController {
 
   @Operation(description = "Exibir uma igreja")
   @GetMapping("/{id}")
+  // TODO: Refatorar
   public ResponseEntity<ChurchResponseDto> getById(@PathVariable UUID id) {
     Church church = repositoryChurch.findById(id);
 

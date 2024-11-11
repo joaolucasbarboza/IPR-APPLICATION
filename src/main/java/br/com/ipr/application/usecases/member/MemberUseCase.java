@@ -1,10 +1,14 @@
-package br.com.ipr.application.usecases;
+package br.com.ipr.application.usecases.member;
 
 import br.com.ipr.application.gateways.RepositoryChurch;
 import br.com.ipr.application.gateways.RepositoryMember;
 import br.com.ipr.domain.Church;
 import br.com.ipr.domain.Member;
-import br.com.ipr.infra.exceptions.member.*;
+import br.com.ipr.infra.exceptions.member.EmailAlreadyRegistered;
+import br.com.ipr.infra.exceptions.member.IncorretPatternCPF;
+import br.com.ipr.infra.exceptions.member.InvalidEmailFormat;
+import br.com.ipr.infra.exceptions.member.MemberAlreadyExist;
+import br.com.ipr.infra.exceptions.member.PasswordTooShortException;
 import br.com.ipr.infra.gateways.member.MemberEntityMapper;
 import br.com.ipr.infra.request.MemberRequestDto;
 import java.util.Optional;
@@ -29,7 +33,7 @@ public class MemberUseCase {
 
     Member member = memberEntityMapper.toMemberDomain(memberRequestDto, church);
 
-    return repositoryMember.createMember(member);
+    return repositoryMember.save(member);
   }
 
   private void validatePassword(String password) {
@@ -53,7 +57,7 @@ public class MemberUseCase {
         .filter(c -> c.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}"))
         .orElseThrow(IncorretPatternCPF::new);
 
-    if (repositoryMember.findByCpf(cpf)) {
+    if (repositoryMember.existsByCpf(cpf)) {
       throw new MemberAlreadyExist(String.format("CPF %s already registered", cpf));
     }
   }

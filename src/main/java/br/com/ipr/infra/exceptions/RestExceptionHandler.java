@@ -68,4 +68,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
     return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
   }
+
+  @ExceptionHandler(ChurchAlreadyAssociatedException.class)
+  public ResponseEntity<RestErrorMessage> churchAlreadyAssociatedException(
+      ChurchAlreadyAssociatedException exception) {
+    RestErrorMessage errorMessage =
+        new RestErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+  }
 }

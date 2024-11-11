@@ -25,5 +25,5 @@ public class ChurchEntity {
   @NotBlank private String surname;
   @NotBlank private String description;
   @NotNull private String image;
-  @NotNull private UUID idShepherd;
+  private UUID idShepherd;
 }

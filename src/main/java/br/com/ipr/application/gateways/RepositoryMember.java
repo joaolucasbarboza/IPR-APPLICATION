@@ -7,9 +7,13 @@ import java.util.Optional;
 
 public interface RepositoryMember {
 
-  Member createMember(Member member);
+  Member save(Member member);
 
-  boolean findByCpf(String cpf);
+  Member association(Member member);
+
+  boolean existsByCpf(String cpf);
+
+  Member findByCpf(String cpf);
 
   Optional<MemberEntity> findByEmail(String email);
 
